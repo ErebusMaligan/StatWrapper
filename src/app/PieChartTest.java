@@ -20,7 +20,7 @@ public class PieChartTest {
 	public static void main( String args[] ) {		
 		//Generate a data set
 		ArrayList<DataSet<?, ?>> data = new ArrayList<DataSet<?, ?>>();
-		ChartData cd = new ChartData( data, "Publishing Trials", "Trial Runs", "MIOs Sent" );
+		ChartData cd = new ChartData( data, "Publishing Trials", "Trial Runs", "Objects Sent" );
 		String[] cat = new String[] { "Publisher 1", "Publisher 2", "Publisher 3" };
 		String[] series = new String[] { "Trail 1" };
 		for ( String s : series ) {
