@@ -35,6 +35,7 @@ public class ChartData implements DataSetListener {
 
 	public ChartData( List<DataSet<?, ?>> data, String name, String xName, String yName ) {
 		this.data = data;
+		data.forEach( d -> d.setChartData( this ) );
 		this.name = name;
 		this.xName = xName;
 		this.yName = yName;
