@@ -94,8 +94,8 @@ public class JFreeChartEnhancer {
 	/**
 	 * If the plot is neither a CategoryPlot or XYPlot... the method is just a no-op
 	 * 
-	 * @param cp
-	 * @param text
+	 * @param cp ChartPanel being acted on
+	 * @param text Color to change the axis lines to
 	 */
 	public static void setPlotAxisColor( ChartPanel cp, Color text ) {  //yes, every one of these calls has to be duplicated in each block, they don't inherit common paint color calls
 		try {
