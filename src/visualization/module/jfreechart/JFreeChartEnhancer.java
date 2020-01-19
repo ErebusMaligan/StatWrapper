@@ -18,14 +18,14 @@ import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
-import org.jfree.util.ShapeUtilities;
+import org.jfree.chart.util.ShapeUtils;
 
-import utils.FormattingUtils;
-import visualization.chart.Chart;
 import data.ChartData;
 import data.ChartData.TimeGranularity;
 import export.exporter.ExportOptions;
 import export.exporter.format.NanoTimeFormatter;
+import utils.FormattingUtils;
+import visualization.chart.Chart;
 
 /**
  * Way to encapsulate some standard chart visual adjustment methods
@@ -44,8 +44,8 @@ public class JFreeChartEnhancer {
 	 */
 	public static void enhanceStandardTimeSeriesChart( ChartPanel cp ) {
 		CategoryPlot plot = cp.getChart().getCategoryPlot();
-		plot.getRenderer().setBaseItemLabelsVisible( true );
-		plot.getRenderer().setSeriesShape( 0, ShapeUtilities.createDiamond( 3 ) );
+		plot.getRenderer().setDefaultItemLabelsVisible( true );
+		plot.getRenderer().setSeriesShape( 0, ShapeUtils.createDiamond( 3 ) );
 		if ( plot.getRenderer() instanceof LineAndShapeRenderer ) {
 			( (LineAndShapeRenderer)plot.getRenderer() ).setSeriesShapesVisible( 0, true );
 		}
@@ -58,10 +58,10 @@ public class JFreeChartEnhancer {
 		XYPlot plot = cp.getChart().getXYPlot();
 		( (NumberAxis)plot.getDomainAxis() ).setTickUnit( num );
 		plot.getDomainAxis().setVerticalTickLabels( true );
-		plot.getRenderer().setBaseItemLabelsVisible( true );
+		plot.getRenderer().setDefaultItemLabelsVisible( true );
 		if ( plot.getRenderer() instanceof XYLineAndShapeRenderer ) {
 			XYLineAndShapeRenderer renderer = (XYLineAndShapeRenderer)plot.getRenderer();
-			renderer.setSeriesShape( 0, ShapeUtilities.createDiamond( 3 ) );
+			renderer.setSeriesShape( 0, ShapeUtils.createDiamond( 3 ) );
 			renderer.setSeriesShapesVisible( 0, true );
 		}
 		plot.getDomainAxis().setLowerMargin( 0 );
@@ -72,7 +72,7 @@ public class JFreeChartEnhancer {
 		XYPlot plot = cp.getChart().getXYPlot();
 		if ( plot.getRenderer() instanceof XYLineAndShapeRenderer ) {
 			XYLineAndShapeRenderer renderer = (XYLineAndShapeRenderer)plot.getRenderer();
-			renderer.setSeriesShape( i, ShapeUtilities.createDiamond( 3 ) );
+			renderer.setSeriesShape( i, ShapeUtils.createDiamond( 3 ) );
 			renderer.setSeriesShapesVisible( i, true );
 			if ( i > 50 ) {
 				renderer.setSeriesVisibleInLegend( i, false );
@@ -120,7 +120,7 @@ public class JFreeChartEnhancer {
 	public static void setPlotShowShapes( ChartPanel cp, Shape shape ) {
 		try {
 			CategoryPlot plot = cp.getChart().getCategoryPlot();
-			plot.getRenderer().setBaseItemLabelsVisible( true );
+			plot.getRenderer().setDefaultItemLabelsVisible( true );
 			if ( plot.getDataset() != null ) {  //if dataset is empty (as in a dynamic chart that hasn't been filled) this will be null
 				for ( int i = 0; i < plot.getDataset().getRowCount(); i++ ) {  //row count is number of labeled data plots... the participants in the legend
 					plot.getRenderer().setSeriesShape( i, shape );
@@ -132,7 +132,7 @@ public class JFreeChartEnhancer {
 		} catch ( ClassCastException e ) {  //means it's an xy or some other plot
 			try {
 				XYPlot plot = cp.getChart().getXYPlot();
-				plot.getRenderer().setBaseItemLabelsVisible( true );
+				plot.getRenderer().setDefaultItemLabelsVisible( true );
 				if ( plot.getDataset() != null ) {
 					for ( int i = 0; i < plot.getDataset().getSeriesCount(); i++ ) {
 						plot.getRenderer().setSeriesShape( i, shape );
@@ -173,7 +173,7 @@ public class JFreeChartEnhancer {
 	}
 	
 	public static Shape getStandardShape() {
-		return ShapeUtilities.createDiamond( 3 );
+		return ShapeUtils.createDiamond( 3 );
 	}
 	
 	public static NumberTickUnit getTimeNumberTick() {
